@@ -1,0 +1,379 @@
+<?php
+/**
+ * Шаблон поиска (search.php)
+ * @package WordPress
+ * @subpackage your-clean-template-3
+ */
+
+get_header(); // подключаем header.php ?> 
+<section class="content content--bus">
+	<div class="container">
+	<div class="g-scrolling-carousel">
+		<div class="content__filters items">
+		  <a href="/" class="content__filter active" data-slug="grup-ekskursii">
+			Все экскурсии
+			<span><?=$term_all->count?></span>
+		  </a>
+		  <?php foreach($terms_tax as $item): ?>
+			<?php if($item->slug != 'grup-ekskursii'&&$item->slug != 'indiv-ekskursii' &&  $item->slug != 'zimniye' && $item->slug != 'novogodnie'): ?>
+				<a href="/<?=$item->slug?>/" class="content__filter" data-slug="<?=$item->slug?>">
+					<?php echo str_replace('экскурсии', '', $item->name);?>
+					<span><?=$item->count?></span>
+				</a>
+			<?php endif; ?>
+		  <?php endforeach; ?>
+		</div>
+	</div>
+	<?php if (current_user_can('administrator')): ?>
+		<div class="filter_button_wrap">
+			<button class="parametrs js-filter-toggle_sort">
+				<img src="<?php echo get_template_directory_uri()?>/img/rank.png" alt="" style="margin-right: 10px;margin-left: 10px;">
+				<span>По популярности</span> 
+				<img src="<?php echo get_template_directory_uri()?>/img/down.png" alt="" style="margin-left: auto;margin-right: 10px;">
+			</button>
+
+			<button class="js-filter-toggle"> 
+				<img class="big" src="<?php echo get_template_directory_uri()?>/img/set.png" alt="Фильтр">
+				<img class="small" src="<?php echo get_template_directory_uri()?>/img/setwhite.png" alt="Фильтр">
+				<span>Фильтр</span> 
+			</button>
+
+			<div class="input-group">
+				<div class="input-group-append">
+					<img src="<?php echo get_template_directory_uri()?>/img/shape.png" alt="" style="margin-left: 10px;">
+				</div>
+				<input class="popup-input rent-start form-control datepicker hasDatepicker" type="text" name="rent-start" id="rent-start"  data-position="right top" placeholder="Даты проведения" readonly="">
+			</div>
+
+			<button class="parametrs js-filter-duration_sort">
+				<img src="<?php echo get_template_directory_uri()?>/img/clock.png" alt="Длительность" style="margin-right: 10px;margin-left: 10px;">
+				<span>Длительность</span> 
+				<img src="<?php echo get_template_directory_uri()?>/img/down.png" alt="Длительность" style="margin-left: auto;margin-right: 10px;">
+			</button>
+
+			<div class="page-radio-wrap-body js-4">
+				<label>
+					<div class="input-radio-wrap input-radio-wrap-yes">
+						<input type="checkbox" name="have_sale">
+						<span>Со скидкой</span>
+					</div>
+				</label>
+
+				<label>
+					<div class="input-radio-wrap">
+						<input type="checkbox" name="exclusive">
+						<span>Эксклюзив</span>
+					</div>
+				</label>
+			</div>
+
+			<form role="search" method="get" id="searchform" action="<?php echo home_url( '/' ) ?>" >
+				<input class="d1" type="text" value="<?php echo get_search_query() ?>" name="s" id="s" placeholder="Что хотите найти?" />
+	            <input type="hidden" value="tours" name="post_type" />
+	            <input type="hidden" value="1" name="sentence" />
+				<button class="d2">
+					<img src="<?php echo get_template_directory_uri()?>/img/search.png" alt="" style="margin: auto;">
+				</button>
+			</form>
+
+		</div>	
+		<div class="js-parametrs">
+			<div class="setting js-rank-parametrs">
+				<div class="setting__item">
+					<div class="setting__item-inner" data-select="select-4">
+						<label>
+							<div class="setting__item-radio js-4">
+								<input type="radio" checked=""  name="sorts" value="pops">
+								<span>По популярности</span>
+							</div>
+						</label>
+
+						<label>
+							<div class="setting__item-radio js-4">
+								<input type="radio" name="sorts" value="expensive">
+								<span>По возрастанию цены</span>
+							</div>
+						</label>
+						<label>
+							<div class="setting__item-radio js-4">
+								<input type="radio" name="sorts" value="chip">
+								<span>По убыванию цены</span>
+							</div>
+						</label>
+					</div>
+				</div>
+			</div>	
+			<div class="setting js-duration-parametrs">
+				<div class="setting__item">
+					<div class="setting__item-inner" data-select="select-4">
+						<label>
+							<div class="setting__item-radio js-4">
+								<input type="radio"  name="duration" value="3">
+								<span>до 3-х часов</span>
+							</div>
+						</label>
+
+						<label>
+							<div class="setting__item-radio js-4">
+								<input type="radio" name="duration" value="5">
+								<span>3-5 часов</span>
+							</div>
+						</label>
+						<label>
+							<div class="setting__item-radio js-4">
+								<input type="radio" name="duration" value="more5">
+								<span>более 5 часов</span>
+							</div>
+						</label>
+					</div>
+				</div>
+			</div>			
+		</div>
+	<?php endif ?>		
+	    <?php $all_posts = new WP_Query($_GET); ?>
+		<h1 style="margin-bottom: 15px;" class="mainh">Найдено <?php echo $all_posts->found_posts; ?> экскурсий</h1>
+		<div class="tours_block">
+			<div class="content__tours" id="tours">
+
+
+				<?php $all_posts = new WP_Query($_GET); ?>
+				<?php if ($all_posts->have_posts()) : while ($all_posts->have_posts()) : $all_posts->the_post(); // если посты есть - запускаем цикл wp ?>
+					<?php
+						$term_id = get_queried_object()->term_id;
+						if (!$term_id) {
+							$term_id = 33;
+						}
+						$theme_url = get_stylesheet_directory_uri();
+
+						$periodicity = (get_field('periodicity', $post->ID))?get_field('periodicity', $post->ID):'по запросу';
+						$start_time = (get_field('start_time', $post->ID))?get_field('start_time', $post->ID):'по запросу';
+						$duration = (get_field('duration', $post->ID))?correctTime(get_field('duration', $post->ID)):'по запросу';
+						$prevDesc = (get_field('previuDesk', $post->ID))?wp_trim_words(get_field('previuDesk', $post->ID),20):wp_trim_words(get_the_content(), 20);
+						$thumbnail_attributes = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'large');
+
+						$thumbnail_url = (isset($thumbnail_attributes[0])) ? $thumbnail_attributes[0] : $theme_url.'/assets/images/340719-200.png';
+						$url = (stripos(get_permalink($post->ID, true ),'%tours%')>-1)?get_permalink($post->ID, false ):get_permalink($post->ID, true );
+						$terms_arr = [];
+						$tickets_arr = json_decode(get_post_meta($post->ID, 'tickets', 1));
+						$new_date = [];
+						$sticker_background = get_field('sticker_background', $post->ID) ? get_field('sticker_background', $post->ID) : '';
+						$sticker_text = get_field('sticker_text', $post->ID) ? get_field('sticker_text', $post->ID) : '';
+						$addr = (get_post_meta($post->ID, 'on_address', 1))?'Московский вокзал или Невский, 17':'Московский вокзал';
+						if(!get_field('id_crm', $post->ID) && get_field('departure_address', $post->ID))
+							$addr = get_field('departure_address', $post->ID);
+						if (get_field('p_doshkolniki_sale', $post->ID)) {
+							$true_price = get_field('p_doshkolniki_sale', $post->ID);
+						} elseif ( get_field('p_doshkolniki', $post->ID) ) {
+							$true_price = get_field('p_doshkolniki', $post->ID);
+						} elseif (get_field('p_shkolniki_sale', $post->ID)){
+							$true_price = get_field('p_doshkolniki', $post->ID);
+						}  else {
+							$true_price = get_field('p_shkolniki', $post->ID) . ' руб/чел';
+						} 
+
+						foreach (get_the_terms($post->ID, 'excursion') as $te){
+							$terms_arr[] = $te->slug;
+						}
+						$terms = implode(" ", $terms_arr);
+
+						if ($tickets_arr) {
+							foreach ($tickets_arr as $key => $value) {
+								if ($value->tickets > 0) {
+									$tickets_date = explode('.', $value->date);
+									$date = $tickets_date[2] . '-' . $tickets_date[1] . '-'. $tickets_date[0];
+									break;
+								}
+							}
+						}
+						if ($tickets_arr) {
+							foreach ($tickets_arr as $key => $value) {
+								if ($value->tickets > 0) {
+									$tickets_date = explode('.', $value->date);
+									$date2 = $tickets_date[2] . '-' . $tickets_date[1] . '-'. $tickets_date[0] ;
+									if (is_array($new_date) && !in_array($date2, $new_date)) {
+										$new_date[] = $date2;
+									}
+								}
+							}
+						}
+						$_monthsList = array(".01." => "января", ".02." => "февраля", 
+						".03." => "марта", ".04." => "апреля", ".05." => "мая", ".06." => "июня", 
+						".07." => "июля", ".08." => "августа", ".09." => "сентября",
+						".10." => "октября", ".11." => "ноября", ".12." => "декабря");
+						$currentDate = date("d.m.", strtotime($date));
+						$_mD = date(".m.", strtotime($date));
+						$currentDate = str_replace($_mD, " ".$_monthsList[$_mD]." ", $currentDate);
+						
+						$lang = ($term_id == 41)?'en':'ru';
+						
+						if($term_id == 33){
+							$periodicity = (get_field('turi_otpravlenie', $post->ID))?get_field('turi_otpravlenie', $post->ID):'по запросу';
+							$start_time = (get_field('turi_mounthes', $post->ID))?get_field('turi_mounthes', $post->ID):'по запросу';
+							$duration = (get_field('turi_duration', $post->ID))?get_field('turi_duration', $post->ID):'по запросу';
+							$true_price = (get_field('turi_price', $post->ID))?get_field('turi_price', $post->ID).' руб/чел':'по запросу';
+						}
+
+
+						if (!empty(get_field('p_doshkolniki_sale', $post->ID)) || !empty(get_field('p_shkolniki_sale', $post->ID)) || !empty(get_field('p_studenty_sale', $post->ID)) || !empty(get_field('p_vzroslie_sale', $post->ID)) || !empty(get_field('p_pensionery_sale', $post->ID)) || !empty(get_field('p_vzroslie_inostrancy_sale', $post->ID)) || !empty(get_field('p_studenty_inostrancy_sale', $post->ID)) || !empty(get_field('p_deti_inostrancy_sale', $post->ID))) {
+							$is_sale = true;
+						} else {
+							$is_sale = false;
+						}
+						if (get_field('p_doshkolniki_sale', $post->ID)) {
+							$datacost = get_field('p_doshkolniki_sale', $post->ID);
+						} elseif ( get_field('p_shkolniki_sale', $post->ID) ) {
+							$datacost = get_field('p_shkolniki_sale', $post->ID);
+						} elseif (get_field('p_doshkolniki', $post->ID)){
+							$datacost = get_field('p_doshkolniki', $post->ID);
+						}  elseif (get_field('p_shkolniki', $post->ID)){
+							$datacost = get_field('p_shkolniki', $post->ID);
+						}  else {
+							$datacost = get_field('p_vzroslie', $post->ID);
+						} 
+						$durationnolet = preg_replace("/[^,.:0-9]/", '', $duration);
+						$durationclear = str_replace(',','.',$durationnolet);
+
+						$data_date = '"123",';
+						if ($new_date) {
+							foreach ($new_date as $key => $value) {
+								$data_date .= '"' . $value . '",';					
+							}
+						} else {
+							$data_date = '';
+						}
+
+					?>
+					<div class="content__tour tour <?=$terms?>" data-crm-id="<?=get_field('id_crm', $post->ID)?>" data-true-price="<?=$true_price?>" data-sale="<?php echo $is_sale; ?>"  <?php if($datacost) { echo 'data-cost="' . $datacost . '"'; } ?> data-duration="<?php echo $durationclear; ?>" data-exlusive="<?=get_field('eksklyuziv', $post->ID)?>" data-popular="<?php echo $post->ID; ?>"  data-stuff='[<?php echo $data_date; ?>]'>
+						<a href="<?=$url?>" class="tour__header">
+						  <img
+							src="<?=$theme_url?>/assets/images/Spinner-1s-200px.svg"
+							data-src="<?=$thumbnail_url?>"
+							alt="tour-image"
+							class="tour__image lazy"
+						  />
+						<?php if(get_field('sticker', $post->ID)): ?>
+						  	<?php if (get_field('sticker', $post->ID) == 'Для детей'): ?>
+								<?php $backgound =  $sticker_background ? $sticker_background : "#904aca"; ?>
+								<?php $color = $sticker_text ? $sticker_text : "#fff"; ?>
+							  	<span class="stick" style="background: <?php echo $backgound;?>">
+							  		<span class="quatr" style="background: <?php echo $backgound;?>"></span>
+							  		<span class="text" style="color: <?php echo $color;?>"><?php echo get_field('sticker', $post->ID); ?></span>				  		
+							  	</span>
+						  	<?php elseif(get_field('sticker', $post->ID) == 'Эксклюзив'): ?>	
+								<?php $backgound =  $sticker_background ? $sticker_background : "#d62c32"; ?>
+								<?php $color = $sticker_text ? $sticker_text : "#fff"; ?>
+							  	<span class="stick" style="background: <?php echo $backgound;?>">
+							  		<span class="quatr" style="background: <?php echo $backgound;?>"></span>
+							  		<span class="text" style="color: <?php echo $color;?>"><?php echo get_field('sticker', $post->ID); ?></span>				  		
+							  	</span>
+						  	<?php else: ?>	
+								<?php $backgound =  $sticker_background ? $sticker_background : "#9e14d5"; ?>
+								<?php $color = $sticker_text ? $sticker_text : "#fff"; ?>
+							  	<span class="stick" style="background: <?php echo $backgound;?>">
+							  		<span class="quatr" style="background: <?php echo $backgound;?>"></span>
+							  		<span class="text" style="color: <?php echo $color;?>"><?php echo get_field('sticker', $post->ID); ?></span>				  		
+							  	</span>
+						  	<?php endif ?>
+					 	<?php elseif (get_field('p_doshkolniki_sale', $post->ID) || get_field('p_shkolniki_sale', $post->ID) || get_field('p_studenty_sale', $post->ID) || get_field('p_vzroslie_sale', $post->ID) || get_field('p_pensionery_sale', $post->ID) || get_field('p_vzroslie_inostrancy_sale', $post->ID) || get_field('p_studenty_inostrancy_sale', $post->ID) || get_field('p_deti_inostrancy_sale', $post->ID)): ?>
+					 		<?php if (get_field('includ_sales', 'options')): ?>
+					 			<?php 
+
+								$sticker_backgrounds = get_field('sticker_background', 'options') ? get_field('sticker_background', 'options') : '#904aca';
+								$sticker_txt = get_field('sticker_text', 'options') ? get_field('sticker_text', 'options') : '#fff';
+								if (get_field('p_doshkolniki_sale', $post->ID)) {
+									$priceold = get_field('p_doshkolniki', $post->ID);
+									$pricenew = get_field('p_doshkolniki_sale', $post->ID);
+
+
+								} elseif (get_field('p_shkolniki_sale', $post->ID)){
+									$priceold = get_field('p_doshkolniki', $post->ID);
+									$pricenew = get_field('p_shkolniki_sale', $post->ID);
+
+								}  
+								$newprice = 100-($pricenew*100/$priceold);
+
+					 			 ?>
+							  	<span class="stick" style="background: <?php echo $sticker_backgrounds; ?>">
+							  		<span class="quatr" style="background: <?php echo $sticker_backgrounds; ?>"></span>
+							  		<span class="text" style="font-weight: 500;color: <?php echo $sticker_txt; ?>">Скидка -<?php echo round($newprice);?>% c 23 по 30 ноября</span>						  		
+							  	</span>	
+					 		<?php else: ?>
+								<?php $backgound = $sticker_background ? $sticker_background : "#45c451"; ?>
+								<?php $color = $sticker_text ? $sticker_text : "#fff"; ?>
+							  	<span class="stick" style="background: <?php echo $backgound;?>">
+							  		<span class="quatr" style="background: <?php echo $backgound;?>"></span>
+							  		<span class="text" style="color: <?php echo $color;?>">Скидка на билеты</span>						  		
+							  	</span>
+						  	<?php endif ?>
+
+					  	<?php endif ?>
+						  <!--h3><?=$post->post_title?></h3-->
+						</a>				
+						<div class="tour__content">
+							<h4 class="tour__title"><?the_title()?></h4>
+						  <noindex><p><?=$prevDesc?></p></noindex>
+							<!-- <?=wp_trim_words($post->post_content, 15)?> -->
+							<?php if($term_id == 33):?>
+							  <div class="tour__info">
+								<span class="tour__duration">Продолжительность: <?=$duration?></span>
+								<!--span class="tour__time">Отправление: <?=$periodicity?></span-->
+								<span class="tour__days">Месяцы проведения: <?=$start_time?></span>							
+							  </div>
+							<?php else: ?>
+								<div class="tour__info">
+									<span class="tour__days"><?=$periodicity?></span>
+									<!--span class="tour__time"><?=$start_time?></span-->
+									<span class="tour__duration"><?=$duration?></span>
+									<span class="tour__addr"><?=$addr?></span>
+								</div>
+							<?php endif; ?>
+						<?php if(get_field('id_crm', $post->ID)): ?>
+						  <div class="tour__tickets-left">
+							Билетов на <?php echo $currentDate; ?>:
+							<span id="count_tickets">30</span>
+						  </div>
+						<?php elseif($term_id != 33): ?>
+							<div class="tour__tickets-left tour__tickets-space"></div>
+						<?php endif; ?>
+						  <div class="tour__cost">
+							<?php if ($lang=='en' || in_array('excursions-in-english', $terms_arr)):?>
+								Cost: <span>
+									<?=(get_field('p_doshkolniki', $post->ID))?'from <span id="min_cost">'.get_field('p_doshkolniki', $post->ID).' <span id="min_cost">rub/person':'on request'?>
+								</span></span>
+							<?php else:?>
+								Стоимость:
+								<span>от <span id="min_cost">
+								<?php
+								if (get_field('p_doshkolniki_sale', $post->ID)) {
+									echo "<span class='old-price-front'>".get_field('p_doshkolniki', $post->ID)."</span>";
+									echo get_field('p_doshkolniki_sale', $post->ID) . ' руб/чел';
+								} elseif ( get_field('p_doshkolniki', $post->ID) ) {
+									echo get_field('p_doshkolniki', $post->ID) . ' руб/чел';
+								} elseif (get_field('p_shkolniki_sale', $post->ID)){
+									echo get_field('p_shkolniki_sale', $post->ID) . ' руб/чел';
+								}  else {
+									echo get_field('p_shkolniki', $post->ID) . ' руб/чел';
+								} 
+
+
+
+
+
+								?>
+								</span>
+								</span>
+							<?php endif;?>
+						  </div>
+						  
+						  <a href="<?=$url?>" class="tour__book"><?=($lang=='en' || in_array('excursions-in-english', $terms_arr))?'Book now':'Забронировать'?></a>
+						</div>
+					</div>
+				<?php endwhile; // конец цикла
+				else: echo '<p>По вашему запросу ничего не найдено, попробуйте еще раз.</p>'; endif; // если записей нет, напишим "простите" ?>	 
+			</div>
+
+			
+		</div>
+	</div>
+</section>
+<?php get_footer(); // подключаем footer.php ?>
