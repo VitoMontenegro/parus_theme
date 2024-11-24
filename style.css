@@ -9960,12 +9960,15 @@ right: -10px !important;
   }
   .has_video {
     position: absolute;
-      right: auto;
-      bottom: 20px;
-      left: 15px;
-      margin-left: 0;
-      width: 33px;
-      height: 22px;
+    right: auto;
+    bottom: 0px;
+    left: 0px;
+    margin-left: 0;
+    width: 76px;
+    height: 60px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
   }
   .tours-content ::marker {
       color: #fcb900;

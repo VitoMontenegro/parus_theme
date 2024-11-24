@@ -114,36 +114,38 @@
                 </svg>
             </i>
         </button>
-        <a href="<?=$url?>" class="tour__header">
-			<img
-				<?php /*src="<?=$theme_url?>/assets/images/Spinner-1s-200px.svg" */ ?>
-				<?php /*data-src="<?=$thumbnail_url?>" */ ?>
-				src="<?=$thumbnail_url?>"
-				alt="tour-image"
-				<?php /* class="tour__image lazy" */ ?>
-				class="tour__image"
-			/>
+        <span  class="tour__header">
+            <a href="<?=$url?>">
+                <img
+                    <?php /*src="<?=$theme_url?>/assets/images/Spinner-1s-200px.svg" */ ?>
+                    <?php /*data-src="<?=$thumbnail_url?>" */ ?>
+                    src="<?=$thumbnail_url?>"
+                    alt="tour-image"
+                    <?php /* class="tour__image lazy" */ ?>
+                    class="tour__image"
+                />
+            </a>
 			<?php if(get_field('sticker', $post->ID)): ?>
 			  	<?php if (get_field('sticker', $post->ID) == 'Для детей'): ?>
 					<?php $backgound =  $sticker_background ? $sticker_background : "#904aca"; ?>
 					<?php $color = $sticker_text ? $sticker_text : "#fff"; ?>
 				  	<span class="stick" style="background: <?php echo $backgound;?>">
 				  		<span class="quatr" style="background: <?php echo $backgound;?>"></span>
-				  		<span class="text" style="color: <?php echo $color;?>"><?php echo get_field('sticker', $post->ID); ?></span>				  		
+				  		<span class="text" style="color: <?php echo $color;?>"><?php echo get_field('sticker', $post->ID); ?></span>
 				  	</span>
-			  	<?php elseif(get_field('sticker', $post->ID) == 'Эксклюзив'): ?>	
+			  	<?php elseif(get_field('sticker', $post->ID) == 'Эксклюзив'): ?>
 					<?php $backgound =  $sticker_background ? $sticker_background : "#d62c32"; ?>
 					<?php $color = $sticker_text ? $sticker_text : "#fff"; ?>
 				  	<span class="stick" style="background: <?php echo $backgound;?>">
 				  		<span class="quatr" style="background: <?php echo $backgound;?>"></span>
-				  		<span class="text" style="color: <?php echo $color;?>"><?php echo get_field('sticker', $post->ID); ?></span>				  		
+				  		<span class="text" style="color: <?php echo $color;?>"><?php echo get_field('sticker', $post->ID); ?></span>
 				  	</span>
-			  	<?php else: ?>	
+			  	<?php else: ?>
 					<?php $backgound =  $sticker_background ? $sticker_background : "#9e14d5"; ?>
 					<?php $color = $sticker_text ? $sticker_text : "#fff"; ?>
 				  	<span class="stick" style="background: <?php echo $backgound;?>">
 				  		<span class="quatr" style="background: <?php echo $backgound;?>"></span>
-				  		<span class="text" style="color: <?php echo $color;?>"><?php echo get_field('sticker', $post->ID); ?></span>				  		
+				  		<span class="text" style="color: <?php echo $color;?>"><?php echo get_field('sticker', $post->ID); ?></span>
 				  	</span>
 			  	<?php endif ?>
 			<?php endif ?>
@@ -152,13 +154,13 @@
 
 			<?php if(have_rows('stick_group', $item->ID)): ?>
 				<?php while ( have_rows('stick_group', $item->ID) ) : the_row(); ?>
-					<?php if (get_sub_field('sticker')): ?>						
+					<?php if (get_sub_field('sticker')): ?>
 						<?php $backgound =  get_sub_field('sticker_background') ? get_sub_field('sticker_background') : "#9e14d5"; ?>
 
 						<?php $color = get_sub_field('sticker_text') ? get_sub_field('sticker_text') : "#fff"; ?>
 				  		<span class="stick" style="background: <?php echo $backgound;?><?php echo ';top: '.$top.'px;';?>">
 				  			<span class="quatr" style="background: <?php echo $backgound;?>"></span>
-				  			<span class="text" style="color: <?php echo $color;?>"><?php the_sub_field('sticker'); ?></span>					  				
+				  			<span class="text" style="color: <?php echo $color;?>"><?php the_sub_field('sticker'); ?></span>
 			  			</span>
 			  			<?php $top += 45; ?>
 					<?php endif ?>
@@ -166,7 +168,7 @@
 			<?php endif ?>
 		 	<?php if ((get_field('p_doshkolniki_sale', $post->ID) || get_field('p_shkolniki_sale', $post->ID) || get_field('p_studenty_sale', $post->ID) || get_field('p_vzroslie_sale', $post->ID) || get_field('p_pensionery_sale', $post->ID) || get_field('p_vzroslie_inostrancy_sale', $post->ID) || get_field('p_studenty_inostrancy_sale', $post->ID) || get_field('p_deti_inostrancy_sale', $post->ID))  && $post->ID !=4386): ?>
 		 		<?php if (get_field('includ_sales', 'options')): ?>
-		 			<?php 
+		 			<?php
 
 					$sticker_backgrounds = '#904aca';
 					$sticker_txt = get_field('sticker_text', 'options') ? get_field('sticker_text', 'options') : '#fff';
@@ -179,28 +181,28 @@
 						$priceold = get_field('p_doshkolniki', $post->ID);
 						$pricenew = get_field('p_doshkolniki_sale', $post->ID);
 
-					}  
+					}
 					$newprice = 100-($pricenew*100/$priceold);
 
 		 			 ?>
 				  	<span class="stick" style="background: <?php echo $sticker_backgrounds; ?><?php if (get_field('sticker', $post->ID) || have_rows('stick_group', $post->ID)) {echo ';top: '. $top .'px;';}?>">
 				  		<span class="quatr" style="background: <?php echo $sticker_backgrounds; ?>"></span>
-				  		<span class="text" style="font-weight: 500;color: <?php echo $sticker_txt; ?>">Скидка -<?php echo round($newprice);?>% c 23 по 30 ноября</span>						  		
-				  	</span>	
+				  		<span class="text" style="font-weight: 500;color: <?php echo $sticker_txt; ?>">Скидка -<?php echo round($newprice);?>% c 23 по 30 ноября</span>
+				  	</span>
 		 		<?php else: ?>
 					<?php $backgound = "#45c451"; ?>
 					<?php $color = $sticker_text ? $sticker_text : "#fff"; ?>
 				  	<span class="stick" style="background: <?php echo $backgound;?><?php if (get_field('sticker', $post->ID) || have_rows('stick_group', $post->ID)) {echo ';top: '. $top .'px;';}?>">
 				  		<span class="quatr" style="background: <?php echo $backgound;?>"></span>
-				  		<span class="text" style="color: <?php echo $color;?>">Скидка на билеты</span>						  		
+				  		<span class="text" style="color: <?php echo $color;?>">Скидка на билеты</span>
 				  	</span>
 			  	<?php endif ?>
 
 		  	<?php endif ?>
 		  	<?php if ($video_after_gates): ?>
-			  	<span class="has_video" data-ll-status="observed"><svg height="100%" version="1.1" viewBox="0 0 68 48" width="35" style="position: absolute;top: 0;left: 0;"><path class="" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path></svg></span>
+			  	<a href="<?php echo $video_after_gates; ?>" target="_blank" class="has_video" data-ll-status="observed"><svg height="100%" version="1.1" viewBox="0 0 68 48" width="35" style="position: absolute;top: 0;left: 20px;"><path class="" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path></svg></a>
 		  	<?php endif ?>
-		</a>				
+		</span>
 		<div class="tour__content">
 			<h2 class="tour__title"><?the_title()?></h2>
 			<noindex><p><?=$prevDesc?></p></noindex>

@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7f6b1476-d060-4a5b-a367-79b600da93af" name="Changes" comment="" />
+    <list default="true" id="7f6b1476-d060-4a5b-a367-79b600da93af" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loop-individual.php" beforeDir="false" afterPath="$PROJECT_DIR$/loop-individual.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loop_tax.php" beforeDir="false" afterPath="$PROJECT_DIR$/loop_tax.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page-wishlist.php" beforeDir="false" afterPath="$PROJECT_DIR$/page-wishlist.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shortcode-tours.php" beforeDir="false" afterPath="$PROJECT_DIR$/shortcode-tours.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template-parts/loop-front-preview.php" beforeDir="false" afterPath="$PROJECT_DIR$/template-parts/loop-front-preview.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,7 +50,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732446855336</updated>
-      <workItem from="1732446857978" duration="2244000" />
+      <workItem from="1732446857978" duration="6711000" />
     </task>
     <servers />
   </component>
@@ -58,5 +67,36 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/functions.php</url>
+          <line>1039</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/template-parts/loop-front-preview.php</url>
+          <line>163</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/functions.php</url>
+          <line>2281</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/functions.php</url>
+          <line>2284</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/template-parts/loop-front-preview.php</url>
+          <line>173</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

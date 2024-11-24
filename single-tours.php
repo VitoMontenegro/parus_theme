@@ -469,7 +469,7 @@
 
                     <?php $indiv_prices = get_field('indiv_price'); ?>
 
-                    <?php if($indiv_prices && (count($indiv_prices) >= 2) and (!$tury)){ //если большая высота сайдбара ?>
+                    <?php if((count($indiv_prices) >= 2) and (!$tury)){ //если большая высота сайдбара ?>
                         <div class="features for-pc features--padding" id="features">
                             <div class="f-item">
                                 <div class="f-icon">
@@ -529,7 +529,7 @@
                         </div>
 
                     <?php } ?>
-					                    <?php if($indiv_prices && (count($indiv_prices) < 2) and (!$tury)): //обычная высота сайдбара?>
+					                    <?php if((count($indiv_prices) < 2) and (!$tury)): //обычная высота сайдбара?>
 				     	<div class="features for-pc" id="features">
 						    <div class="f-item">
 						        <div class="f-icon">

@@ -1012,12 +1012,12 @@ ob_start();
         if ($m<1) continue;
         $items_prices[] = (int) $m;
     }
-    if ($items_prices && count($items_prices)>1) {
+//    if (count($items_prices)>1) {
         $min_price = min($items_prices);
-    }
+//    }
 
-    $items_time_min = ($items_times && count($items_times)>1) ? min($items_times) : 0;
-    $items_time_max = ($items_times && count($items_times)>1) ? max($items_times) : 0;
+    $items_time_min = min($items_times);
+    $items_time_max = max($items_times);
     if ($items_time_max == 1.5){
         $items_time_max = $items_time_max.'&nbsp;часа';
     } else {
@@ -1036,8 +1036,7 @@ ob_start();
     }
     $slogan = $atts['slogan'];
     $id_int = (int)$atts['id'];
-    //$link = get_term_link($id_int);
-    $link = 'asdfghjk';
+    $link = get_term_link($id_int);
     ?>
 
 
