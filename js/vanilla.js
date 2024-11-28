@@ -38,7 +38,7 @@ document.addEventListener('dates_loaded', () => {
 		enableDateToggle: false,
 		onClickDate(self) {
 			var split = self.context.selectedDates[0].split('-'),
-			t = 'Доступное время на '+split[2]+' '+m[self.context.selectedMonth]+' '+self.context.selectedYear;
+			t = 'Доступное время на '+split[2]+' '+m[(split[1]*1)-1]+' '+split[0];
 			jQuery('[name="form_date"]').val(self.context.selectedDates[0]).change();
 			jQuery('[name="form_date"]').change();
 			jQuery('.form-title-time').text(t);
@@ -46,10 +46,6 @@ document.addEventListener('dates_loaded', () => {
 	};
 	const calendar = new Calendar('#custom_datepicker', Options);
 	calendar.init();
-	jQuery('[data-vc-date-today] button').click();
+	jQuery('[data-vc-date="'+window.dates.min_date+'"] button').click();
 	jQuery('.custom_datepicker__wrapper').show();
-
-	
-	console.log(allowDates);
-	//console.log(window.dates.dates);
 });

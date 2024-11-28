@@ -127,6 +127,44 @@ jQuery(document).ready(function ($) {
 				$('.totop').removeClass('active');
 			}
 		});
+		
+	var $tabs = $('.gid__more_tabs .gid__more_tab');
+	$('.gid__more_tab').click(function(){
+		let tab = $(this).data('tab'),
+			n=$tabs.index(this);
+			
+		$(this).siblings().removeClass('active');
+		$(this).addClass('active');
+		$(this).closest('.gid').find('.gid__tab').hide();
+		$(this).closest('.gid').find('.gid__tab[data-tab="'+tab+'"]').show();
+		$(this).closest('.gid').find('.gid__dot').removeClass('active');
+		$(this).closest('.gid').find('.gid__dots>.gid__dot:eq('+n+')').addClass('active');
+	});
+	$('.gid').each(function(){
+		$(this).find('.gid__tabs>*:eq(0)').show();
+		$(this).find('.gid__more_tabs>*:eq(0)').addClass('active');
+	});
+	$('.gid__accreditation').each(function(){
+		var h = $(this).height();
+		if(h>80.5){
+			$(this).addClass('over');
+			//$(this).text(h+' '+$(this).text());
+		}
+	});
+	$('.gid__review').each(function(){
+		var h = $(this).outerHeight();
+		if(h>278){
+			$(this).addClass('over');
+		} else {
+			$(this).addClass('not-over');
+		}
+	});
+	var $dots = $('.gid__dots>.gid__dot');
+	$('.gid__dot').click(function(){
+		let n=$dots.index(this);
+		console.log(n);
+		$(this).closest('.gid').find('.gid__more_tabs>.gid__more_tab:eq('+n+')').click();
+	});
 	
 	$('.school_copy').click(function(e){
 		e.preventDefault();
