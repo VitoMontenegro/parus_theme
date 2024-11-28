@@ -32,11 +32,11 @@ $date='';
 	$addr = (get_post_meta($post->ID, 'on_address', 1))?'Московский вокзал или Невский, 17':'Московский вокзал';
 	$video_after_gates = get_field('video_after_gates', $post->ID);
 	$video_after_gates_dzen = get_field('video_after_gates_dzen', $post->ID);
-	
+
 	$image_id = get_post_thumbnail_id($post->ID);
 	$image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', TRUE);
 
-				
+
 	if ($post->ID == '4649') {
 		$addr = 'Университетская наб., 13';
 	}
@@ -52,7 +52,7 @@ $date='';
 	}
 
 
-				
+
 	// if (get_field('p_doshkolniki_sale', $post->ID)) {
 	// 	$true_price = get_field('p_doshkolniki_sale', $post->ID);
 	// } elseif ( get_field('p_doshkolniki', $post->ID) ) {
@@ -71,7 +71,7 @@ $date='';
 		$true_price = get_field('p_doshkolniki_sale', $post->ID);
 	}  else {
 		$true_price = get_field('p_doshkolniki', $post->ID) . ' руб/чел';
-	} 
+	}
 
 	foreach (get_the_terms($post->ID, 'excursion') as $te){
 		$terms_arr[] = $te->slug;
@@ -96,7 +96,7 @@ $date='';
 	}
 	if ($tickets_arr) {
 		foreach ($tickets_arr as $key => $value) {
-			if ($value->tickets > 0) {				
+			if ($value->tickets > 0) {
 				$tickets_date = explode('.', $value->date);
 				if(strlen($tickets_date[0])==1) $tickets_date[0] = '0'.$tickets_date[0];
 				$date2 = $tickets_date[2] . '-' . $tickets_date[1] . '-'. $tickets_date[0] ;
@@ -107,14 +107,14 @@ $date='';
 			}
 		}
 	}
-	$_monthsList = array(".01." => "января", ".02." => "февраля", 
-	".03." => "марта", ".04." => "апреля", ".05." => "мая", ".06." => "июня", 
+	$_monthsList = array(".01." => "января", ".02." => "февраля",
+	".03." => "марта", ".04." => "апреля", ".05." => "мая", ".06." => "июня",
 	".07." => "июля", ".08." => "августа", ".09." => "сентября",
 	".10." => "октября", ".11." => "ноября", ".12." => "декабря");
 	$currentDate = date("d.m.", strtotime($date));
 	$_mD = date(".m.", strtotime($date));
 	$currentDate = str_replace($_mD, " ".$_monthsList[$_mD]." ", $currentDate);
-	
+
 	$lang = ($term_id == 41)?'en':'ru';
 	if($term_id == 33 || $num_tour){
 		$start_time = (get_field('turi_mounthes', $post->ID))?get_field('turi_mounthes', $post->ID):'по запросу';
@@ -136,7 +136,7 @@ $date='';
 	// 	$datacost = get_field('p_shkolniki', $post->ID);
 	// }  else {
 	// 	$datacost = get_field('p_vzroslie', $post->ID);
-	// } 
+	// }
 	if (get_field('p_shkolniki_sale', $post->ID)) {
 		$datacost = get_field('p_shkolniki_sale', $post->ID);
 	} elseif ( get_field('p_shkolniki', $post->ID) ) {
@@ -147,14 +147,14 @@ $date='';
 		$datacost = get_field('p_doshkolniki', $post->ID);
 	}  else {
 		$datacost = get_field('p_vzroslie', $post->ID);
-	} 
+	}
 	$durationnolet = preg_replace("/[^,.:0-9]/", '', $duration);
 	$durationclear = str_replace(',','.',$durationnolet);
 
 	$data_date = '"123",';
 	if ($new_date) {
 		foreach ($new_date as $key => $value) {
-			$data_date .= '"' . $value . '",';					
+			$data_date .= '"' . $value . '",';
 		}
 	} else {
 		$data_date = '';
@@ -280,12 +280,12 @@ $date='';
 		  	<?php endif ?>
             <?php if ($video_after_gates || $video_after_gates_dzen): ?>
 				<?php if($video_after_gates_dzen): ?>
-					<a href="<?php echo getDzenSrc($video_after_gates_dzen);?>" target="_blank" class="has_video" data-ll-status="observed"><svg height="26px" width="26px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 58.00 58.00" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle style="fill:#ff6d2e;" cx="29" cy="29" r="29"></circle> <g> <polygon style="fill:#FFFFFF;" points="44,29 22,44 22,29.273 22,14 "></polygon> <path style="fill:#FFFFFF;" d="M22,45c-0.16,0-0.321-0.038-0.467-0.116C21.205,44.711,21,44.371,21,44V14 c0-0.371,0.205-0.711,0.533-0.884c0.328-0.174,0.724-0.15,1.031,0.058l22,15C44.836,28.36,45,28.669,45,29s-0.164,0.64-0.437,0.826 l-22,15C22.394,44.941,22.197,45,22,45z M23,15.893v26.215L42.225,29L23,15.893z"></path> </g> </g></svg></a>
+					<a href="<?php echo $url; ?>#after_gates_wrap" class="has_video" data-ll-status="observed"><svg height="26px" width="26px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 58.00 58.00" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle style="fill:#ff6d2e;" cx="29" cy="29" r="29"></circle> <g> <polygon style="fill:#FFFFFF;" points="44,29 22,44 22,29.273 22,14 "></polygon> <path style="fill:#FFFFFF;" d="M22,45c-0.16,0-0.321-0.038-0.467-0.116C21.205,44.711,21,44.371,21,44V14 c0-0.371,0.205-0.711,0.533-0.884c0.328-0.174,0.724-0.15,1.031,0.058l22,15C44.836,28.36,45,28.669,45,29s-0.164,0.64-0.437,0.826 l-22,15C22.394,44.941,22.197,45,22,45z M23,15.893v26.215L42.225,29L23,15.893z"></path> </g> </g></svg></a>
 				<?php else: ?>
-					<a href="<?php echo $video_after_gates; ?>" target="_blank" class="has_video" data-ll-status="observed"><svg height="100%" version="1.1" viewBox="0 0 68 48" width="35" style="position: absolute;top: 0;left: 20px;"><path class="" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path></svg></a>
+					<a href="<?php echo $url; ?>#after_gates_wrap" class="has_video" data-ll-status="observed"><svg height="100%" version="1.1" viewBox="0 0 68 48" width="35" style="position: absolute;top: 0;left: 20px;"><path class="" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path></svg></a>
 				<?php endif ?>
             <?php endif ?>
-		</span>	
+		</span>
 		<div class="tour__content">
 			<a href="<?=$url?>"><h2 class="tour__title"><?the_title()?></h2></a>
 		  <noindex><p><?=$prevDesc?></p></noindex>
@@ -295,7 +295,7 @@ $date='';
 				<?php if($term_id == 109): ?>
 					<span class="tour__time">Периодичность: <?=$periodicity?></span>
 				<?php else: ?>
-					<span class="tour__days blue">Месяцы проведения: <?=$start_time?></span>							
+					<span class="tour__days blue">Месяцы проведения: <?=$start_time?></span>
 				<?php endif; ?>
 			  </div>
 			<?php else: ?>
@@ -323,7 +323,7 @@ $date='';
 				<span><span class="tour__word_from">от</span> <span id="min_cost">
 				<?php
 				$price = get_from_price($post->ID);
-				
+
 				if($price['old_price']){
 					echo "<span class='old-price-front'>".$price['old_price']."</span>";
 					echo '<span class="ajax_priceno">'.$price['price'].'</span>';
@@ -335,7 +335,7 @@ $date='';
 				</span>
 			<?php endif;?>
 		  </div>
-		  
+
 		  <a href="<?=$url?>" class="tour__book"><?=($lang=='en' || in_array('excursions-in-english', $terms_arr))?'Book now':'Забронировать'?></a>
 		</div>
 	</div>

@@ -4819,117 +4819,23 @@ h3 {
   .pl-55 {
     padding-left: 55px;
   }
-
-  .gid.gid-card {
-    background-color: #f6f6f6;
-	box-shadow: 0px 4px 10px rgba(100, 100, 100, 0.25);
+.gid.gid-card {
+    background-color: #F6F6F6;
+    box-shadow: 0px 4px 10px rgba(100, 100, 100, 0.25);
     display: flex;
-    padding: 52px 0;
-    margin: 0 0 80px 0;
-  }
-
-  .page .gid.gid-card:nth-of-type(2n) {
-    text-align: right;
-    flex-direction: row-reverse;
-  }
+    padding: 32px;
+    width: calc(50% - 10px);
+	flex-wrap: wrap;
+	color: #333333;
+    line-height: 124%;
+}
 
   .block-editor-block-list__block:nth-of-type(2n) .gid.gid-card {
     text-align: right;
     flex-direction: row-reverse;
   }
 
-  .wp-admin .gid.gid-card {
-    padding: 20px 0;
-    margin: 0;
-    zoom: 0.75;
-  }
 
-  .gid-card .gid-img {
-    height: 360px;
-    box-shadow: 0 8px 20px 4px #d4dee8;
-    flex: 0 0 280px;
-    margin: 0 52px;
-	    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .wp-admin .gid-img {
-    height: 150px;
-    flex: 0 0 100px;
-    margin: 0 20px;
-  }
-
-  .gid-card .gid-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .gid-card .gid-info {
-    color: #333;
-  }
-
-  .gid-card .gid-header {
-    font-size: 20px;
-    color: #0099ce;
-    margin: 20px 0 30px 0;
-  }
-
-  .gid-card .gid-review-header {
-    font-weight: 600;
-  }
-
-  .gid-card .gid-accreditation b {
-    font-weight: 700;
-  }
-
-  .gid-card .gid-experience b {
-    font-weight: 700;
-  }
-
-  .page .gid.gid-card:nth-of-type(2n) * {
-    background-position: 100% 10px;
-  }
-
-  .block-editor-block-list__block:nth-of-type(2n) .gid.gid-card * {
-    background-position: 100% 0;
-  }
-
-  .gid-card .gid-accreditation {
-    line-height: 20px;
-    background: url(/wp-content/themes/parus/img/contact.svg) no-repeat 0 10px;
-    background-size: 30px;
-    padding: 10px 58px;
-  }
-
-  .gid-card .gid-experience {
-    line-height: 42px;
-    background: url(/wp-content/themes/parus/img/star.svg) no-repeat 0 50%;
-    background-size: 30px;
-    padding: 0 58px;
-    margin: 0 0 10px 0;
-  }
-
-  .gid-card .gid-review-header {
-    line-height: 42px;
-    padding: 0 58px;
-  }
-
-  .gid-card .gid-review-text {
-    font-weight: 300;
-    font-style: italic;
-    line-height: 20px;
-    letter-spacing: 0.02em;
-    background: url(/wp-content/themes/parus/img/quote.png) no-repeat 0 10px;
-    background-size: 30px;
-    padding: 10px 58px;
-  }
-
-  .gid-card .gid-review-author {
-    font-style: italic;
-    text-align: right;
-    padding: 0 58px;
-  }
 
 
   /********************************************************************/
@@ -7624,38 +7530,7 @@ blockquote::before{
       padding: 20px;
       margin: 0 0 40px 0;
     }
-    .page .gid.gid-card:nth-of-type(2n) {
-      text-align: left;
-      flex-direction: column;
-    }
-    .page .gid.gid-card:nth-of-type(2n) * {
-      background-position: 0 10px;
-    }
-    .gid-card .gid-header {
-      margin: 20px 0;
-    }
-    .gid-card .gid-img {
-      height: 400px;
-      flex: 0 0 auto;
-      margin: 0 0 20px 0;
-    }
-    .gid-card .gid-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top;
-	  border-radius: 2px;
-    }
-    .gid-card .gid-accreditation,
-    .gid-card .gid-experience {
-      text-align: left;
-      text-align-last: left;
-      padding-left: 50px;
-      padding-right: 0;
-    }
-    .gid-card .gid-experience {
-      background-position: 0 4px;
-    }
+ 
     .gid-card .gid-review-header {
       padding: 0 0 0 50px;
     }
@@ -7907,65 +7782,6 @@ blockquote::before{
     }
     .slider-nav {
       bottom: 20px;
-    }
-    .gid {
-      flex-direction: column;
-      padding: 20px;
-      margin: 0 0 40px 0;
-    }
-    .page .gid:nth-of-type(2n) {
-      text-align: left;
-      flex-direction: column;
-    }
-    .page .gid:nth-of-type(2n) * {
-      background-position: 0 10px;
-    }
-    .gid-header {
-      margin: 20px 0;
-    }
-    .gid-img {
-      height: 400px;
-      flex: 0 0 auto;
-      margin: 0 0 20px 0;
-    }
-    .gid-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top;
-    }
-    .gid-accreditation,
-    .gid-experience {
-      text-align: left;
-      text-align-last: left;
-      padding-left: 50px;
-      padding-right: 0;
-    }
-    .gid-experience {
-      background-position: 0 4px;
-    }
-    .gid-review-header {
-      padding: 0 0 0 50px;
-    }
-    .gid-review-text {
-      background: none;
-      padding: 10px 0;
-      position: relative;
-    }
-    .gid-review-text:after {
-      content: '';
-      width: 32px;
-      height: 32px;
-      background: url(/wp-content/themes/parus/img/quote.png) no-repeat;
-      position: absolute;
-      top: -32px;
-      left: 0;
-    }
-    .gid-review-author {
-      padding: 0;
-    }
-    .gid-review-author {
-      padding: 10px 0;
     }
     .countNumbRov {
       flex-direction: column;
@@ -8374,9 +8190,6 @@ blockquote::before{
     #rev_form .kind_of_staff,
     #rev_form .popup-input-file-content {
       flex: 1 1 calc(50% - 30px);
-    }
-    .gid {
-      margin-bottom: 20px;
     }
     .content--reviews .review__text {
       padding-bottom: 0;
@@ -13182,7 +12995,7 @@ background:#2473b9
     padding: 10px;
     position: fixed;
     right: 26px;
-    bottom: 170px;
+    bottom: 105px;
 	z-index: 2100;
 	box-shadow: 0 0 20px -2px #25D366;
 	animation: pulse 2.5s linear infinite;
@@ -13280,6 +13093,7 @@ ol,ul {
         padding: 6px;
         right: 20px;
         bottom: 105px;
+		        overflow: hidden;
 	}
 	.link-to-top{
 		display:none!important
@@ -13472,4 +13286,195 @@ content: '';
 }
 .fancybox-container {
     z-index: 9999999999;
+}
+.page-id-2425 .content>.container {
+    display: flex;
+    flex-wrap: wrap;
+	gap:20px
+}
+.page-id-2425 .content>.container>*:not(.gid) {
+	width:100%
+}
+.page-id-2425 h1 {
+    margin-bottom: 5px;
+}
+.gid__img {
+    width: 144px;
+    height: 144px;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+}
+.gid__title {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 18px;
+}
+.gid__name {
+    color: #0099CE;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28px;
+    margin-bottom: 12px;
+}
+.gid b {
+    font-weight: 600;
+}
+.gid__name>*:first-child {
+    font-size: 32px;
+    width: 100%;
+    display: block;
+    margin-bottom: 4px;
+}
+.gid__more {
+    margin: 18px 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+	flex-wrap: wrap;
+    gap: 8px;
+}
+.gid__tab {
+    width: 100%;
+}
+.gid__more_title {
+    font-weight: 600;
+}
+.gid__accreditation.over {
+    height: 80px;
+    overflow-y: scroll;
+}
+.gid__more_tabs {
+    display: flex;
+    gap: 12px;
+    font-size: 12px;
+}
+.gid__more_tab {
+    background: #0099CE;
+    color: #fff;
+    padding: 4px 6px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    line-height: normal;
+    cursor: pointer;
+	font-weight: 500;
+}
+.gid__more_tab.active {
+    background: #CACACA;
+}
+.gid__review {
+    padding: 24px;
+    background: #fff;
+    border-radius: 10px;
+	 min-height: 278px;
+	 position:relative
+}
+.gid__tabs {
+    width: 100%;
+}
+.gid__accreditation {
+    min-height: 80px;
+}
+.gid__review.over {
+    height: 278px;
+	overflow-y: scroll;
+}
+.gid__review.not-over>b {
+    display: block;
+    position: absolute;
+    bottom: 20px;
+}
+.gid__dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    margin-top: 18px;
+}
+.gid__dot.active {
+    background: #CACACA;
+}
+.gid__dot {
+    width: 52px;
+    height: 4px;
+    background: #0099CE;
+    border-radius: 22px;
+    cursor: pointer;
+}
+.gid__tab iframe {
+    border-radius: 10px;
+    border: none;
+}
+.gid__review>img {
+    margin-bottom: 10px;
+}
+@media (max-width:1024px){
+	.gid.gid-card {
+		padding: 16px;
+	}
+}
+@media (max-width:787px){
+	.gid.gid-card {
+		width: 100%;
+	}
+  #after_gates_wrap {
+    scroll-margin-top: 50px;
+  } 
+}
+@media (max-width:480px){
+	.gid__img {
+		width: 60px;
+		height: 60px;
+		border-radius: 6px;
+	}
+	.gid__title {
+		gap: 12px;
+	}
+	.gid__name {
+		line-height: 16px;
+		font-size: 14px;
+		margin-bottom: 6px;
+	}
+	.gid__name>*:first-child {
+		font-size: 20px;
+	}
+	.gid.gid-card {
+		font-size: 12px;
+	}
+	.gid__more {
+		margin: 16px 0;
+	}
+	.gid__accreditation {
+		min-height: unset;
+		max-height: 52px!important;
+		overflow-y:scroll;
+		line-height: 114%;
+	}
+	.gid__more_tabs {
+		font-size: 10px;
+		gap: 8px;
+	}
+	.gid__tab iframe {
+		border-radius: 6px;
+		height:166px!important
+	}
+	.gid p {
+		font-size: 12px;
+		line-height: 130%;
+	}
+	.gid__review {
+		padding: 14px;
+		font-size: 10px;
+		min-height: unset;
+		max-height: 166px;
+		overflow-y:scroll
+	}
+	.gid__review.not-over>b {
+		position: relative;
+		bottom: unset;
+	}
 }

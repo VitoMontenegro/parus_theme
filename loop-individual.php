@@ -16,8 +16,8 @@
 	$sticker_background = get_field('sticker_background', $post->ID) ? get_field('sticker_background', $post->ID) : '';
 	$sticker_text = get_field('sticker_text', $post->ID) ? get_field('sticker_text', $post->ID) : '';
 	$video_after_gates = get_field('video_after_gates', $post->ID);
-	
-	$true_price = get_field('price', $post->ID) . ' руб/чел'; 
+
+	$true_price = get_field('price', $post->ID) . ' руб/чел';
 
 	foreach (get_the_terms($post->ID, 'excursion') as $te){
 		$terms_arr[] = $te->slug;
@@ -42,7 +42,7 @@
 	}
 	if ($tickets_arr) {
 		foreach ($tickets_arr as $key => $value) {
-			if ($value->tickets > 0) {				
+			if ($value->tickets > 0) {
 				$tickets_date = explode('.', $value->date);
 				if(strlen($tickets_date[0])==1) $tickets_date[0] = '0'.$tickets_date[0];
 				$date2 = $tickets_date[2] . '-' . $tickets_date[1] . '-'. $tickets_date[0] ;
@@ -53,14 +53,14 @@
 			}
 		}
 	}
-	$_monthsList = array(".01." => "января", ".02." => "февраля", 
-	".03." => "марта", ".04." => "апреля", ".05." => "мая", ".06." => "июня", 
+	$_monthsList = array(".01." => "января", ".02." => "февраля",
+	".03." => "марта", ".04." => "апреля", ".05." => "мая", ".06." => "июня",
 	".07." => "июля", ".08." => "августа", ".09." => "сентября",
 	".10." => "октября", ".11." => "ноября", ".12." => "декабря");
 	$currentDate = date("d.m.", strtotime($date));
 	$_mD = date(".m.", strtotime($date));
 	$currentDate = str_replace($_mD, " ".$_monthsList[$_mD]." ", $currentDate);
-	
+
 	$lang = ($term_id == 41)?'en':'ru';
 
 
@@ -79,7 +79,7 @@
 	// 	$datacost = get_field('p_shkolniki', $post->ID);
 	// }  else {
 	// 	$datacost = get_field('p_vzroslie', $post->ID);
-	// } 
+	// }
 	if (get_field('p_shkolniki_sale', $post->ID)) {
 		$datacost = get_field('p_shkolniki_sale', $post->ID);
 	} elseif ( get_field('p_shkolniki', $post->ID) ) {
@@ -90,14 +90,14 @@
 		$datacost = get_field('p_doshkolniki', $post->ID);
 	}  else {
 		$datacost = get_field('p_vzroslie', $post->ID);
-	} 
+	}
 	$durationnolet = preg_replace("/[^,.:0-9]/", '', $duration);
 	$durationclear = str_replace(',','.',$durationnolet);
 
 	$data_date = '"123",';
 	if ($new_date) {
 		foreach ($new_date as $key => $value) {
-			$data_date .= '"' . $value . '",';					
+			$data_date .= '"' . $value . '",';
 		}
 	} else {
 		$data_date = '';
@@ -200,7 +200,7 @@
 
 		  	<?php endif ?>
 		  	<?php if ($video_after_gates): ?>
-			  	<a href="<?php echo $video_after_gates; ?>" target="_blank" class="has_video" data-ll-status="observed"><svg height="100%" version="1.1" viewBox="0 0 68 48" width="35" style="position: absolute;top: 0;left: 20px;"><path class="" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path></svg></a>
+			  	<a href="<?php echo $url; ?>#after_gates_wrap" class="has_video" data-ll-status="observed"><svg height="100%" version="1.1" viewBox="0 0 68 48" width="35" style="position: absolute;top: 0;left: 20px;"><path class="" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path></svg></a>
 		  	<?php endif ?>
 		</span>
 		<div class="tour__content">
@@ -221,7 +221,7 @@
 				</span>
 				</span>*/ ?>
 		  </div>
-		  
+
 		  <a href="<?=$url?>" class="tour__book"><?=($lang=='en' || in_array('excursions-in-english', $terms_arr))?'Book now':'Забронировать'?></a>
 		</div>
 	</div>

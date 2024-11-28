@@ -4,25 +4,25 @@
 add_shortcode( 'toures_on_post', 'toures_on_post_func' );
 function toures_on_post_func( $atts ) {
     $atts = shortcode_atts( array(
-        'ids' => '', 
+        'ids' => '',
         'tour_per_page' => '4',
     ), $atts, 'toures_on_post' );
-    
+
      ob_start();
- 
-    
+
+
      	$all_posts = get_posts( array(
 			'numberposts' => $atts['tour_per_page'],
 			'post_type' => 'tours',
-			'tax_query' => array(                                  // элемент (термин) таксономии 
+			'tax_query' => array(                                  // элемент (термин) таксономии
 				array(
-					'taxonomy' => 'excursion',         // таксономия 
+					'taxonomy' => 'excursion',         // таксономия
 					'field' => 'slug',
-					'terms'    => 'grup-ekskursii' // термин 
+					'terms'    => 'grup-ekskursii' // термин
 				)
 			),
             'post__in' => explode(',', $atts['ids'])
-		) );		
+		) );
 	?>
 
 	<div class="content--bus content--post shortcode-toures_on_post"><div class="content__tours tours-slider post_tours_slider" id="tours">
@@ -43,7 +43,7 @@ function toures_on_post_func( $atts ) {
 					$addr = get_field('departure_address', $item->ID);
 				}
 
-							
+
 				if ($post->ID == '4649') {
 					$addr = 'Университетская наб., 13';
 				}
@@ -79,7 +79,7 @@ function toures_on_post_func( $atts ) {
 				if ($tickets_arr) {
 					foreach ($tickets_arr as $key2 => $value2) {
 						if ($value2->tickets > 0) {
-							
+
 							$tickets_date2 = explode('.', $value2->date);
 							if(strlen($tickets_date2[0])==1) $tickets_date2[0] = '0'.$tickets_date2[0];
 							$date2 = $tickets_date2[2] . '-' . $tickets_date2[1] . '-'. $tickets_date2[0] ;
@@ -98,10 +98,10 @@ function toures_on_post_func( $atts ) {
 						$arr_get_date[$key] = trim($arg,'0');
 					}
 				}
-				
+
 				//var_dump($new_date);
-				$_monthsList = array(".01." => "января", ".02." => "февраля", 
-				".03." => "марта", ".04." => "апреля", ".05." => "мая", ".06." => "июня", 
+				$_monthsList = array(".01." => "января", ".02." => "февраля",
+				".03." => "марта", ".04." => "апреля", ".05." => "мая", ".06." => "июня",
 				".07." => "июля", ".08." => "августа", ".09." => "сентября",
 				".10." => "октября", ".11." => "ноября", ".12." => "декабря");
 				$currentDate = date("d.m.", strtotime($date));
@@ -126,17 +126,17 @@ function toures_on_post_func( $atts ) {
 					$datacost = get_field('p_doshkolniki', $item->ID);
 				}  else {
 					$datacost = get_field('p_vzroslie', $item->ID);
-				} 
+				}
 				$data_date = '"123",';
 				if ($new_date) {
 					foreach ($new_date as $key => $value) {
-						$data_date .= '"' . $value . '",';					
+						$data_date .= '"' . $value . '",';
 					}
 				} else {
 					$data_date = '';
 				}
-			?>	
-			<?php if(get_post_meta($item->ID, 'tickets', 1) || !get_field('id_crm', $item->ID)): ?>					
+			?>
+			<?php if(get_post_meta($item->ID, 'tickets', 1) || !get_field('id_crm', $item->ID)): ?>
 				<?php if ($num == 5): ?>
 					<?php get_template_part('promo'); ?>
 				<?php endif ?>
@@ -162,7 +162,7 @@ function toures_on_post_func( $atts ) {
                           />
                         </a>
 					  <?php if ($video_after_gates): ?>
-					  	<a href="<?php echo $video_after_gates; ?>" target="_blank" class="has_video" data-ll-status="observed"><svg height="100%" version="1.1" viewBox="0 0 68 48" width="35" style="position: absolute;top: 0;left: 20px;"><path class="" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path></svg></a>
+					  	<a href="<?php echo $url; ?>#after_gates_wrap" class="has_video" data-ll-status="observed"><svg height="100%" version="1.1" viewBox="0 0 68 48" width="35" style="position: absolute;top: 0;left: 20px;"><path class="" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path></svg></a>
 					  <?php endif ?>
 
 
@@ -261,20 +261,20 @@ function toures_on_post_func( $atts ) {
 					<?php endif; ?>
 					  <div class="tour__cost">
 					  	<?php if ( !in_array('excursions-in-english', $terms_arr) ): ?>
-					  		<?php 
+					  		<?php
 					  			$rub =' руб/чел'; $norub = ' по запросу';
 					  		?>
 					  		Стоимость:
 					  	<?php else: ?>
-					  		<?php 
+					  		<?php
 					  			$rub =' rub/person'; $norub = ' on request';
 					  		?>
 					  		Cost:
 					  	<?php endif ?>
-						
-						
 
-						<?php 						
+
+
+						<?php
 						// if (get_field('p_shkolniki_sale', $item->ID)) {
 						// 	echo  "<span>от <span id='min_cost'>";
 						// 	echo "<span class='old-price-front'>".get_field('p_shkolniki', $item->ID)."</span>";
@@ -289,7 +289,7 @@ function toures_on_post_func( $atts ) {
 						// }  else {
 						// 	echo  "<span> <span id='min_cost'>";
 						//     echo get_field('p_shkolniki', $item->ID) ? get_field('p_shkolniki', $item->ID) . $rub : $norub;
-						// } 
+						// }
 						if (get_field('p_shkolniki_sale', $item->ID)) {
 							echo  "<span>от <span id='min_cost'>";
 							echo "<span class='old-price-front'>".get_field('p_shkolniki', $item->ID)."</span>";
@@ -297,30 +297,30 @@ function toures_on_post_func( $atts ) {
 						}  else {
 							echo  "<span>от  <span id='min_cost'>";
 						    echo get_field('p_shkolniki', $item->ID) ? get_field('p_shkolniki', $item->ID) . $rub : $norub;
-						} 
+						}
 						?>
 						</span>
 						</span>
 					  </div>
 					  <?php if (!in_array('excursions-in-english', $terms_arr)): ?>
                     <a href="<?=$url?>" class="tour__book">Забронировать</a></div>
-					  <?php else: ?>	
+					  <?php else: ?>
 					  	<a href="<?=$url?>" class="tour__book">Book now</a></div>
 					  <?php endif; ?>
-					</a></div> 
-				 
+					</a></div>
+
 			<?php $num++; ?>
 			<?php endif; ?>
 		<?php endforeach; ?>
 	</div>
     </div>
     <?php
-    
-    $output = ob_get_contents();  
+
+    $output = ob_get_contents();
     ob_end_clean();
 
     return $output;
-}	
+}
 
 
 
@@ -486,7 +486,7 @@ function tour_on_post_func( $atts ) {
                           />
                         </a>
 					  <?php if ($video_after_gates): ?>
-					  	<a href="<?php echo $video_after_gates; ?>" target="_blank" class="has_video" data-ll-status="observed"><svg height="100%" version="1.1" viewBox="0 0 68 48" width="35" style="position: absolute;top: 0;left: 20px;"><path class="" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path></svg></a>
+					  	<a href="<?php echo $url; ?>#after_gates_wrap" class="has_video" data-ll-status="observed"><svg height="100%" version="1.1" viewBox="0 0 68 48" width="35" style="position: absolute;top: 0;left: 20px;"><path class="" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path></svg></a>
 					  <?php endif ?>
 
 

@@ -743,8 +743,8 @@
 		
 		<?php if ($after_gates || $video_after_gates_dzen): ?>
 			<div class="container mt-30">
-				<div class="tours-wrap"  data-sticky-container>				
-					<div class="tours-content">
+				<div class="tours-wrap" data-sticky-container>				
+					<div class="tours-content" id="after_gates_wrap">
 						<?php if ($video_after_gates || $video_after_gates_dzen): ?>
 							<?php if(get_the_ID()==1343): ?>
 								<h2 class="single_tour__video_title">Видео экскурсии</h2>
