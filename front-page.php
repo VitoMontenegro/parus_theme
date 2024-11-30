@@ -46,7 +46,7 @@ get_header(); // подключаем header.php ?>
 
 	<div class="content__text--block">
 		<p>
-			Более 15 лет проводим незабываемые экскурсии в Санкт-Петербурге и окрестностях. Для наших туристов мы подобрали лучшие обзорные, авторские, тематические и эксклюзивные программы. Организуем <a href="/avtobusnyye-ekskursii/">автобусные туры по городу</a>. Гиды аккредитованы при Комитете культуры Петербурга. Имеем прямые договоры с государственными музеями и заповедниками. Состоим в общероссийском генеральном реестре турагентств. Покажем парадный и неформальный Санкт-Петербург во время автобусных и пеших экскурсий.
+			Более 19 лет проводим незабываемые экскурсии в Санкт-Петербурге и окрестностях. Для наших туристов мы подобрали лучшие обзорные, авторские, тематические и эксклюзивные программы. Организуем <a href="/avtobusnyye-ekskursii/">автобусные туры по городу</a>. Гиды аккредитованы при Комитете культуры Петербурга. Имеем прямые договоры с государственными музеями и заповедниками. Состоим в общероссийском генеральном реестре турагентств. Покажем парадный и неформальный Санкт-Петербург во время автобусных и пеших экскурсий.
 
 		</p>
 	</div>
@@ -252,7 +252,7 @@ get_header(); // подключаем header.php ?>
 	?>
 	<!--noindex-->
 	<div class="content-header content-header-reviews">
-		<h2 class="content-header__title">Отзывы на экскурсии по Петербургу</h2>
+		<h2 class="content-header__title"><?=count($myposts)?> отзывов туристов об экскурсиях по Петербургу</h2>
 		<a href="/reviews" class="content-header__link">Смотреть все отзывы</a>
 	</div>
 	
@@ -381,7 +381,7 @@ get_header(); // подключаем header.php ?>
 	<?php echo do_shortcode( '[banner_obzornyye id="11" img="/wp-content/uploads/2024/02/nochnie-1.jpg" size="col-3" name="Ночные" ]' );?>
 	<?php echo do_shortcode( '[banner_obzornyye id="59" img="/wp-content/uploads/2020/04/peter-and-paul-fortress-and-tomb-saint-petersburg-russia-1.jpg" size="col-3" name="Петропавловская крепость"]' );?>
 	<?php echo do_shortcode( '[banner_obzornyye id="60" img="/wp-content/uploads/2024/02/misticheskie.jpg" size="col-3" name="Мистические" ]' );?>
-	<?php echo do_shortcode( '[banner_obzornyye id="117" img="/wp-content/uploads/2020/12/winter-palace-palace-square-st-petersburg-winter-morning.jpg.webp" size="col-3" name="Эрмитаж" ]' );?>
+	<?php echo do_shortcode( '[banner_obzornyye id="117" img="/wp-content/uploads/2020/12/winter-palace-palace-square-st-petersburg-winter-morning.jpg" size="col-3" name="Эрмитаж" ]' );?>
 	<?php echo do_shortcode( '[banner_obzornyye id="18" img="/wp-content/uploads/2024/02/po-hramam.jpg" size="col-3" name="По храмам и соборам" ]' );?>
 		
 	<p>Если вы приехали в наш замечательный город в период белых ночей, не упустите возможность <a href="/nochnyye/">полюбоваться ночным городом</a> и, конечно же, <a href="/teplokhodnyye/">прокатиться на теплоходе под разводными мостами</a>.</p>

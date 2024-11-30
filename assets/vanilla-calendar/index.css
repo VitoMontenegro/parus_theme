@@ -157,17 +157,15 @@
 		background: #F5F5F5;
 		padding: 0px 12px 12px 12px;
 	}
-	[data-vc-theme=light] .vc-arrow {
-		position: absolute;
-		right: 0;
-		top: calc(50% - 18px);
-	}
-	[data-vc-theme=light] .vc-arrow.vc-arrow_prev{
-		right: unset;
-		left: 0;
-	}
 	[data-vc-date-btn],[data-vc-week-day]{
 		min-width: unset;
 		min-height: 24px;
 	}
+	[data-vc-theme=light] .vc-arrow {
+        height: 20px;
+        background: transparent;
+	}
+	[data-vc=calendar] {
+        padding: 0;
+    }
 }

@@ -154,7 +154,7 @@ if (!function_exists('add_scripts')) { // если ф-я уже есть в до
         wp_enqueue_style( 'slick', get_template_directory_uri().'/assets/slick/slick.css',[],0.6074 );
         wp_enqueue_style( 'fancy', get_template_directory_uri().'/assets/fancybox/jquery.fancybox.min.css',[],0.6074 );
         wp_enqueue_style( 'slick-theme', get_template_directory_uri().'/assets/slick/slick-theme.css',[],0.6074 );
-        wp_enqueue_style( 'main', get_template_directory_uri().'/style.css',['slick','slick-theme','fancy'],0.6131 ); // основные стили шаблона
+        wp_enqueue_style( 'main', get_template_directory_uri().'/style.css',['slick','slick-theme','fancy'],0.6135 ); // основные стили шаблона
         wp_enqueue_style( 'wheel', get_template_directory_uri().'/wheel/superwheel.min.css',[],0.6074 ); // wheel
         wp_enqueue_style( 'datepicker-style', get_template_directory_uri().'/assets/css/datepicker.css',[],0.6074 );
         wp_enqueue_style( 'datetimepicker-style', get_template_directory_uri().'/assets/css/jquery.datetimepicker.css',[],0.6074 );
@@ -172,16 +172,16 @@ if (!function_exists('add_scripts')) { // если ф-я уже есть в до
         wp_enqueue_script('formstyler', get_template_directory_uri().'/assets/formstyler/jquery.formstyler.min.js', 'jquery', '', true);
         wp_enqueue_script('maskedinput', get_template_directory_uri().'/js/maskedinput.min.js', 'jquery', '', true);
         wp_enqueue_script('custom-wheel', get_template_directory_uri().'/wheel/wheel.js', 'jquery', '', true);
-        wp_enqueue_script('script', get_template_directory_uri().'/js/script.js?v0.43', 'jquery', '', true);
+        wp_enqueue_script('script', get_template_directory_uri().'/js/script.js?v0.48', 'jquery', '', true);
         if (is_page(1698)) {
             wp_enqueue_style( 'form-styler-style', get_template_directory_uri().'/assets/formstyler/jquery.formstyler.css',[],0.6074 );
             //wp_enqueue_script('form-styler-script',get_template_directory_uri().'/assets/formstyler/jquery.formstyler.min.js','','',true);
         }
 		
 		if(get_post_type()=='tours'){
-			wp_enqueue_style( 'vanilla-style', get_template_directory_uri().'/assets/vanilla-calendar/index.css?5');
+			wp_enqueue_style( 'vanilla-style', get_template_directory_uri().'/assets/vanilla-calendar/index.css?6');
 			wp_enqueue_script('vanilla-script', get_template_directory_uri().'/assets/vanilla-calendar/index.js');
-			wp_enqueue_script('vanilla-custom-script', get_template_directory_uri().'/js/vanilla.js?4', 'vanilla-script');
+			wp_enqueue_script('vanilla-custom-script', get_template_directory_uri().'/js/vanilla.js?5', 'vanilla-script');
 		}
 
         wp_enqueue_script('cookie-script',get_template_directory_uri().'/js/jquery.cookie.js', array('jquery'),'0.6074',true);

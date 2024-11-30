@@ -14,7 +14,7 @@ $dots = 0;
 
 <div class="gid gid-card">
 	<div class="gid__title">
-		<div class="gid__img" style="background-image:url(<?php the_field('img'); ?>)"></div>
+		<a href="<?php the_field('img'); ?>" class="gid__img" style="background-image:url(<?php the_field('img'); ?>)"></a>
 		<div class="gid__title_info">
 			<div class="gid__name">
 				<?php foreach($gid_name as $item): ?>

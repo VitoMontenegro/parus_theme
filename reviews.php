@@ -41,10 +41,16 @@ $args = array(
 	'post_type' => 'reviews'
 );
 $myposts = get_posts( $args );
+
+$args2 = array(
+	'numberposts' => -1,
+	'post_type' => 'reviews'
+);
+$myposts2 = get_posts( $args2 );
 ?>
 <section class="content content--reviews">
 	<div class="container">
-		<h1><?=$h1?></h1>
+		<h1>Отзывы наших туристов (<?=count($myposts2)?>)</h1>
 
 		<a href="#rev_form" class="content__review-add">Оставить отзыв</a>
 		<?php the_content(); ?>

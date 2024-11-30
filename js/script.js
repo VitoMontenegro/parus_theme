@@ -139,7 +139,19 @@ jQuery(document).ready(function ($) {
 		$(this).closest('.gid').find('.gid__tab[data-tab="'+tab+'"]').show();
 		$(this).closest('.gid').find('.gid__dot').removeClass('active');
 		$(this).closest('.gid').find('.gid__dots>.gid__dot:eq('+n+')').addClass('active');
+		
+		let f = $(this).closest('.gid').find('.gid__tab[data-tab="video_fragment"]'),
+			r = $(this).closest('.gid').find('.gid__tab[data-tab="video_review"]'),
+			f_i = $(this).closest('.gid').find('.gid__tab[data-tab="video_review"]').html(),
+			r_i = $(this).closest('.gid').find('.gid__tab[data-tab="video_review"]').html();
+			
+		console.log(r_i);
+		f.html('');
+		r.html('');
+		f.html(f_i);
+		r.html(r_i);
 	});
+	$('.gid__img').fancybox();
 	$('.gid').each(function(){
 		$(this).find('.gid__tabs>*:eq(0)').show();
 		$(this).find('.gid__more_tabs>*:eq(0)').addClass('active');
@@ -210,14 +222,14 @@ jQuery(document).ready(function ($) {
 					if(value){
 						caption = value;
 					}
-					if($('.'+key).closest('figure').find('figcaption').length==0)
+					if($('.'+key).closest('figure').find('figcaption').length==0 && caption)
 						$('<figcaption>'+caption+'</figcaption>').appendTo($('.'+key).closest('figure'));
 				}
 				
 			}
 		);
 	}
-	
+		
 	$('.int_mesta__item').each(function(){
 		var w = $(this).width();
 		$(this).css('height', w);
@@ -1278,13 +1290,6 @@ $(document.body).keydown(function (event) {
 		e.preventDefault();
 		openModal($('.modal__content--more'));
 	});
-	
-	$('.robo__hint').click(function(e){
-		e.preventDefault();
-		openModal($('.modal__content--robokassa'));
-	});
-
-
 
 	// Tickets plus/minus number
 	$('.form__input-wrapper').each(function () {
@@ -2533,6 +2538,29 @@ $(document).on('click','.form__input.alert', function() {
 		$(".g-scrolling-carousel .items").gScrollingCarousel();
 	}
 
+	if($(window).width()<768){
+		$('.review_answer_txt').each(function(){
+			var h = $(this).height();
+			$(this).attr('data-height', h);
+			if(h>=458){
+				$(this).css('height', 458);
+				$('<a class="review_answer_more" href="#">Далее</a>').insertAfter($(this));
+			}
+		});
+		$('.content__review').on('click', '.review_answer_more', function(e){
+			e.preventDefault();
+			var text = $(this).prev(),
+				full_h = text.data('height')*1,
+				cur_h = text.height()*1;
+			
+			if((cur_h+458)>=full_h){
+				$(this).remove();
+				text.css('height', 'auto');
+			} else {
+				text.css('height', cur_h+458);
+			}
+		});
+	}
 
 	$('.review_answer_title').on('click', function() {
 		$(this).next('.review_answer_txt').slideToggle();
@@ -3082,7 +3110,9 @@ $('.info-block__close').click(function() {
 
 
 
-
+	$('.wp-block-gallery a').each(function(){
+		$(this).attr('data-fancybox', 'gal');
+	});
 	$('.wp-block-gallery--center a').fancybox();
 	$('.wp-block-gallery a').fancybox();
 

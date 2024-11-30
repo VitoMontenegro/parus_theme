@@ -2,7 +2,7 @@
 require($_SERVER['DOCUMENT_ROOT'].'/wp-load.php');
 error_reporting(0);
 
-if($_POST['post_id']==1302){
+if($_POST['post_id']==1302 && false){
 	$mrh_login = 'parusttlavto';
 	$mrh_pass1 = 'aBt7Qx10kevnvNfqt4M4';
 	$mrh_pass2 = 'DhxZmSrb9z5CF6aq38Cg';

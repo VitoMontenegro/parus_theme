@@ -56,7 +56,7 @@ if ($_t!='') {
 	  if (isset($data[$index])) $count +=$data[$index];
 	}
 	
-if ($promo_valid || $promo == 'аврора' || $promo == 'спутник' || $promo == 'парус' /*|| $promo == 'parus'*/ || $promo == 'parus150' || $promo == 'вафли'){// = ($promo == $promo_main)){//промо введено верно
+if ($promo_valid || $promo == 'аврора'  || $promo == 'парус' /*|| $promo == 'parus'*/ || $promo == 'parus150' || $promo == 'вафли'){// = ($promo == $promo_main)){//промо введено верно
 $promo_valid = true;
 
 	if (isset($data['discount'])) {
@@ -65,7 +65,7 @@ $promo_valid = true;
 		$discount=100;$minus=0;
 	}
 	
-	if ($promo == 'аврора' || $promo == 'спутник' || $promo == 'parus150') $discount=150;
+	if ($promo == 'аврора'  || $promo == 'parus150') $discount=150;
 	
 	 $minus = $count * $discount;
 

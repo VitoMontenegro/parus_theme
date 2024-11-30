@@ -893,12 +893,11 @@
   .modal__content--image .next-img-button::after {
     content: "";
     position: absolute;
-    top: 50%;
-    left: 55%;
     transform: translate(-50%, -50%);
-    width: 12px;
-    height: 20px;
-    background: #fff url(assets/images/icons.png) -53px -226px no-repeat;
+    width: 32px;
+    height: 33px;
+    background: url(img/keyboard_arrow_left.svg) no-repeat;
+    background-size: contain;
   }
 
   .modal__content--image .prev-img-button {
@@ -2473,7 +2472,9 @@ h3 {
     margin: 10px 0 30px 0;
     box-shadow: 0px 10px 40px rgb(40 40 41 / 15%);
     border-radius: 10px;
-    padding: 20px 30px 5px 30px
+    padding: 20px 30px 5px 30px;
+	background: #F6F6F6;
+	box-shadow: 0px 10px 20px rgb(40 40 41 / 15%);
 }
 .filter__general_wrapper-term33{
 	padding: 0;
@@ -7528,7 +7529,7 @@ blockquote::before{
     .gid.gid-card {
       flex-direction: column;
       padding: 20px;
-      margin: 0 0 40px 0;
+      margin: 0 0 10px 0;
     }
  
     .gid-card .gid-review-header {
@@ -9088,6 +9089,10 @@ blockquote::before{
       top: -11px;
       text-align: center;
     }
+	.review_answer_more {
+    margin-top: 4px;
+    display: block;
+}
     .bnight_desk {
       font-size: 15px;
       top: 5px;
@@ -9104,11 +9109,7 @@ blockquote::before{
       display: none;
     }
     .review_answer_txt {
-      display: none;
-    }
-    .review_answer_title {
-      text-decoration: underline;
-      text-decoration-style: dashed;
+      overflow: hidden;
     }
     .sm-visible {
       display: inline-block;
@@ -12393,7 +12394,6 @@ a[href$="/novogodnie-prazdniki-v-kottedzhe-snezhnyj"] .stick:nth-child(5){displa
     font-weight: bold;
     color: #424242;
 	width: calc(100% - 22px);
-	    font-family: Calibri;
 }
 .faq__title span {
     color: #028AE0;
@@ -12407,7 +12407,6 @@ a[href$="/novogodnie-prazdniki-v-kottedzhe-snezhnyj"] .stick:nth-child(5){displa
 }
 .faq__item.active .faq__text {
     display: block;
-    font-family: Calibri;
     font-size: 16px;
     line-height: 120%;
 }
@@ -13269,19 +13268,144 @@ content: '';
 }
 .robo__hint {
     color: #0099ce;
-    cursor: pointer;
+	position: relative;
+}
+.robo__hint_text{
+	width: 286px;
+    color: #000;
+    background: #fff;
+    padding: 16px 20px;
+    box-shadow: 0 0 7px -1px #ccc;
+    border-radius: 7px;
+    position: absolute;
+    right: -60px;
+    bottom: 32px;
+	display:none
+}
+.robo__hint:hover .robo__hint_text{
+	display:block
+}
+.robo__hint_text::after{
+    content: " ";
+    position: absolute;
+    top: 100%;
+    left: 80%;
+    margin-left: -22px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent;
 }
 .robo__hint img{
     display: inline-block;
     position: relative;
     top: 4px;
 }
+@media (max-width:386px){
+	.robo__hint_text {
+		width: 100%;
+		left: 0;
+		top: -38px;
+		height: fit-content;
+	}
+	.robo__hint {
+		position: unset;
+	}
+	.robo {
+        position: relative;
+    }
+}
 .wp-block-gallery.has-nested-images figure.wp-block-image figcaption:empty{
 	display:none
 }
+.content__image-wrapper-slider,.content__slider{
+	display:none;
+}
+.single_gal {
+    display: flex;
+    height: 100%;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.single_gal__vertical {
+    height: 312px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.single_gal__vertical>a {
+    height: calc(50% - 4px);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.single_gal__big {
+    width: calc(70% - 8px);
+}
+.single_gal a {
+    background-size: cover;
+    background-position: center;
+    display: block;
+	position:relative
+}
+.single_gal a::before,
+.single_gal a::after{
+	left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+	position: absolute;
+	opacity:0;
+	transition: 0.2s
+}
+.single_gal a::before {
+	content:'';
+	background:url(/wp-content/themes/parus/assets/images/_icons/lupa.svg);
+	background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40px;
+	z-index: 2;
+}
+.single_gal a::after {
+	content:'';
+	background:#00000057;
+}
+.single_gal a:hover::before,
+.single_gal a:hover::after{
+	opacity:1;
+}
+.single_gal .content__tour__wish-btn {
+    top: unset;
+    bottom: 15px;
+    left: unset;
+    right: 15px;
+	    z-index: 13;
+}
+.single_gal__half {
+    width: calc(50% - 4px);
+    height: 200px;
+	position: relative;
+}
+.single_gal__half svg{
+    width: 30px;
+    position: absolute;
+    right: 14px;
+    top: 14px;	
+}
 @media (max-width:767px){
+	.single_gal{display:none}
 	.autor_bot {
 		padding: 18px 20px;
+	}
+	.content__image-wrapper-slider,
+	.content__slider{
+		display:block;
+	}
+	.content__image-wrapper-slider.wish-btn{
+		display: flex
 	}
 }
 .fancybox-container {
@@ -13355,7 +13479,7 @@ content: '';
 .gid__more_tab {
     background: #0099CE;
     color: #fff;
-    padding: 4px 6px;
+    padding: 6px 12px;
     border-radius: 4px;
     display: flex;
     align-items: center;
@@ -13365,11 +13489,13 @@ content: '';
 }
 .gid__more_tab.active {
     background: #CACACA;
+	cursor: default;
 }
 .gid__review {
     padding: 24px;
     background: #fff;
     border-radius: 10px;
+	font-style: italic;
 	 min-height: 278px;
 	 position:relative
 }
@@ -13382,6 +13508,18 @@ content: '';
 .gid__review.over {
     height: 278px;
 	overflow-y: scroll;
+}
+.gid__review::-webkit-scrollbar,
+.gid__accreditation::-webkit-scrollbar {
+  width: 4px;
+}
+.gid__review::-webkit-scrollbar-track,
+.gid__accreditation::-webkit-scrollbar-track {
+	background: #d1d1d1;
+}
+.gid__review::-webkit-scrollbar-thumb,
+.gid__accreditation::-webkit-scrollbar-thumb {
+	background: #a0a0a0;
 }
 .gid__review.not-over>b {
     display: block;
@@ -13449,10 +13587,9 @@ content: '';
 		margin: 16px 0;
 	}
 	.gid__accreditation {
-		min-height: unset;
-		max-height: 52px!important;
-		overflow-y:scroll;
-		line-height: 114%;
+        min-height: unset;
+        max-height: unset !important;
+        overflow-y: unset !important;
 	}
 	.gid__more_tabs {
 		font-size: 10px;
@@ -13476,5 +13613,8 @@ content: '';
 	.gid__review.not-over>b {
 		position: relative;
 		bottom: unset;
+	}
+	.gid__more_tab {
+		padding: 4px 8px;
 	}
 }

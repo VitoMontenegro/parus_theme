@@ -225,11 +225,6 @@
 	<?php endif ?>
 	<!-- /wheel -->
 	<div class="modal">
-		<div class="modal__content modal__content-default modal__content--robokassa">
-			<div>Robokassa - известный платежный инструмент, выступающий посредником между компанией-продавцом и покупателем для удаленной оплаты услуг.</div>
-			<span class="modal__close">&#10006;</span>
-		  </div>
-	
       <div class="modal__content modal__content--callback modal__content--callback_clear">
         <form class="modal__form call_form">
           <h3 class="modal__title">

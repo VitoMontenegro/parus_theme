@@ -273,7 +273,7 @@
 	        <div class="content__header">
 		      	<div class="content__left">
 
-                    <button class="wish-btn content__tour__wish-btn<? if($_COOKIE["product"]){ if(in_array($post->ID,$_COOKIE["product"])){echo' is-active';}}?>" data-wp-id="<?php echo $post->ID; ?>" data-title="<?php the_title(); ?>">
+                    <button class="wish-btn content__tour__wish-btn<? if($_COOKIE["product"]){ if(in_array($post->ID,$_COOKIE["product"])){echo' is-active';}}?><?php if($galery && count($galery)>3): ?> content__image-wrapper-slider<?php endif ?>" data-wp-id="<?php echo $post->ID; ?>" data-title="<?php the_title(); ?>">
                         <i class="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
                                 <g clip-path="url(#clip0_2_41)">
@@ -283,8 +283,45 @@
                         </i>
                     </button>
 
+					<?php if($galery && count($galery)>3) : ?>
+						<?php $more_img = (count($galery)>4); ?>
+						<div class="single_gal">
+							<div class="single_gal__vertical">
+								<a data-fancybox="single" href="<?=get_webp($galery[1]['url'])?>" style="background-image:url(<?=$galery[1]['sizes']['medium']?>)"></a>
+								<a data-fancybox="single" href="<?=get_webp($galery[2]['url'])?>" style="background-image:url(<?=$galery[2]['sizes']['medium']?>)"></a>
+							</div>
+							<a data-fancybox="single" class="single_gal__big" href="<?=get_webp($galery_first['url'])?>" style="background-image:url(<?=$galery_first['sizes']['large']?>)">
+								<button class="wish-btn content__tour__wish-btn<? if($_COOKIE["product"]){ if(in_array($post->ID,$_COOKIE["product"])){echo' is-active';}}?>" data-wp-id="<?php echo $post->ID; ?>" data-title="<?php the_title(); ?>">
+									<i class="icon">
+										<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+											<g clip-path="url(#clip0_2_41)">
+												<path d="M7.50002 13.9865C7.42414 13.9865 7.34829 13.9669 7.28032 13.9276C7.20649 13.885 5.45246 12.8666 3.67327 11.3321C2.61876 10.4227 1.777 9.52061 1.17144 8.65108C0.387805 7.52591 -0.00626644 6.44362 9.09643e-05 5.43426C0.00753236 4.25975 0.428205 3.1552 1.18471 2.32405C1.95398 1.4789 2.9806 1.01349 4.07551 1.01349C5.47874 1.01349 6.76168 1.79952 7.50005 3.0447C8.23841 1.79955 9.52135 1.01349 10.9246 1.01349C11.959 1.01349 12.9459 1.43343 13.7036 2.19597C14.5352 3.03277 15.0077 4.21513 14.9999 5.43983C14.9936 6.44743 14.5921 7.52808 13.8067 8.6517C13.1993 9.52079 12.3587 10.4224 11.3083 11.3316C9.53565 12.866 7.79422 13.8844 7.72094 13.927C7.65265 13.9666 7.57631 13.9865 7.50002 13.9865V13.9865Z" fill="#A5A5A5"/>
+											</g>
+										</svg>
+									</i>
+								</button>
+							</a>
+							<a data-fancybox="single" class="single_gal__half" href="<?=get_webp($galery[3]['url'])?>" style="background-image:url(<?=$galery[3]['sizes']['medium']?>)"></a>
+							<a data-fancybox="single" class="single_gal__half" href="<?=get_webp($galery[4]['url'])?>" style="background-image:url(<?=$galery[4]['sizes']['medium']?>)">
+								<?php if($more_img): ?>
+									<svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24">
+									  <path fill="#ffffff" d="M6.1,6v16H22V6H6.1z M20,17.8H8.1V8H20V17.8z"></path>
+									  <polygon fill="#ffffff" points="18.9 2 2 2 2 18.9 4 18.9 4 4 18.9 4"></polygon>
+									</svg>
+								<?php endif ?>
+							</a>
+						
+							<?php if($more_img): ?>
+								<?php foreach($galery as $k=>$item): ?>
+									<?php if($k<5) continue; ?>
+									<a data-fancybox="single" style="display:none" href="<?=get_webp($item['url'])?>"></a>
+								<?php endforeach ?>
+							<?php endif ?>
+						</div>
+					<?php endif ?>
+
 		            <!-- SLIDER -->
-		            <div class="content__image-wrapper slider-hero">
+		            <div class="content__image-wrapper slider-hero<?php if($galery && count($galery)>3): ?> content__image-wrapper-slider<?php endif ?>">
 				        <?php if(get_field('galery')[0]): ?>
 							<?php $caption = ($galery_first['caption'])?$galery_first['caption']:'Фотография размещена в редакционных целях и не предназначена для коммерческого использования'; ?>
 							<?php $caption = ($galery_first['caption'])?$galery_first['caption']:''; ?>
@@ -431,7 +468,7 @@
 		            </div>
 
 					<?php if($galery) : ?>
-						<div class="content__slider slider">
+						<div class="content__slider slider<?php if($galery && count($galery)>3): ?> content__image-wrapper-slider<?php endif ?>">
 						  <button class="slider__prev"></button>
 						  <div class="slider__images">
 							<div class="slider__images-inner">

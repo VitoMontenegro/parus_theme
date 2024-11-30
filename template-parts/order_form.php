@@ -69,7 +69,7 @@
 													</div>
 													<div class="form__radio-radio_wrap">
 														<?php $n20 = [1296, 1370, 4107, 4285, 1390, 1382, 
-																	17551, 11655, 1302]; 
+																	17551, 11655, 1302, 1346]; 
 														 if(in_array(get_the_ID(), $n20)) {
 														 	$a2 = "Невский, 20";
 														 }	else{
@@ -572,7 +572,14 @@
 								
 										<div class="robo">
 											<img src="/wp-content/themes/parus/img/robokassa.svg" style="width: 174px;background: #fff;padding: 14px;" alt="robokassa">
-											<span>Оплата проводится через систему безопасных платежей Robokassa&nbsp;<i class="robo__hint"><img src="/wp-content/themes/parus/assets/images/_icons/question.svg" alt=""></i><br>Ваши данные надежно защищены.</span>
+											<div class="robo__right">
+												<span>Оплата проводится через систему безопасных платежей Robokassa&nbsp;</span>
+												<i class="robo__hint">
+													<img src="/wp-content/themes/parus/assets/images/_icons/question.svg" alt="">
+													<div class="robo__hint_text">Robokassa - известный платежный инструмент, выступающий посредником между компанией-продавцом и покупателем для удаленной оплаты услуг.</div>
+												</i>
+												<br><span style="margin-top: 4px;display: block;">Ваши данные надежно защищены.</span>
+											</div>
 										</div>
 									</div>
 								</form>
